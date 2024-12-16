@@ -1,19 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async headers() {
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'max-body-size',
-            value: '4096mb', // 4GB
-          },
-        ],
-      },
-    ];
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '4gb'
+    }
   },
+  api: {
+    bodyParser: false,
+    responseLimit: false,
+  }
 };
 
 export default nextConfig;
