@@ -1,7 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'max-body-size',
+            value: '4096mb', // 4GB
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
